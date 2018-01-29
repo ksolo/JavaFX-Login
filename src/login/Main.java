@@ -31,7 +31,7 @@ public class Main extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         Text sceneTitle = new Text("Welcome");
-        sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        sceneTitle.setId("welcome-text");
         grid.add(sceneTitle, 0, 0, 2, 1);
 
         Label username = new Label("User Name:");
@@ -47,13 +47,13 @@ public class Main extends Application {
         grid.add(pwBox, 1, 2);
 
         final Text actionTarget = new Text();
+        actionTarget.setId("action-target");
         grid.add(actionTarget, 1, 6);
 
         Button btn = new Button("Sign In");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                actionTarget.setFill(Color.FIREBRICK);
                 actionTarget.setText("Sign in button pressed");
             }
         });
@@ -62,9 +62,12 @@ public class Main extends Application {
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(btn);
         grid.add(hbBtn, 1, 4);
-        
+
         Scene scene = new Scene(grid, 300, 275);
         primaryStage.setScene(scene);
+
+        scene.getStylesheets().add(Main.class.getResource("Login.css").toExternalForm());
+
         primaryStage.show();
     }
 
